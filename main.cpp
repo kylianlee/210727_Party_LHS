@@ -20,7 +20,7 @@ int main(){
   cost.resize(cities + 1, INF);      //  allocating and initialize cost array
   adj.resize(cities + 1);
   for (int i = 0; i <= cities; ++i) {   //  allocating adjacent matrix
-    adj[i].resize(cities, INF);
+    adj[i].resize(cities + 1, INF);
   }
   for (int i = 0; i < roads; ++i) {   //  initialize adjacent matrix
     int src, dest, weight;
@@ -28,9 +28,9 @@ int main(){
     adj[src][dest] = weight;
   }
   Dijkstra1(party_city, cities);
-  for (int i = 1; i <= cities; ++i) {
-    cout << i << " : " << cost[i] << endl;
-  }
+//  for (int i = 1; i <= cities; ++i) {
+//    cout << i << " : " << cost[i] << endl;
+//  }
   for (int i = 1; i <= cities; ++i) {
     if(i == party_city)
       continue;
@@ -41,23 +41,23 @@ int main(){
     if(cost[i] > answer)
       answer = cost[i];
   }
-  for (int i = 1; i <= cities; ++i) {
-    cout << i << " : " << cost[i] << endl;
-  }
+//  for (int i = 1; i <= cities; ++i) {
+//    cout << i << " : " << cost[i] << endl;
+//  }
   cout << answer << endl;
 }
 
 void Dijkstra1(int src, int cities){
   cost[src] = 0;    //  set source city cost 0
   vector<bool> visited_city(cities + 1, false);
-  int min, min_idx;
   int loop = cities;
   while(loop--){
-    min = INF;
+    int min = INF, min_idx;
     for(int i = 1; i <= cities; i++){   //  find city to take minimum cost of cities
       if(!visited_city[i] && cost[i] < min) {  //  unvisited && min cost
         min = cost[i];
         min_idx = i;
+//        cout << "i : " << i << " min : " << min << endl;
       }
     }
     for (int i = 1; i <= cities; ++i) {
@@ -72,14 +72,14 @@ int Dijkstra2(int src, int dest, int cities){
   vector<int> cost2(cities + 1, INF);
   cost2[src] = 0;
   vector<bool> visited_city(cities + 1, false);
-  int min, min_idx;
   int loop = cities;
   while(loop--){
-    min = INF;
+    int min = INF, min_idx;
     for(int i = 1; i <= cities; i++){   //  find city to take minimum cost of cities
       if(!visited_city[i] && cost2[i] < min) {  //  unvisited && min cost
         min = cost2[i];
         min_idx = i;
+//        cout << "i : " << i << " min : " << min << endl;
       }
     }
     for (int i = 1; i <= cities; ++i) {
